@@ -310,6 +310,11 @@ function tip(text){
   if(text){el.textContent = '→ ' + text; el.classList.add('show');}
   else{el.classList.remove('show');}
 }
+if(new URLSearchParams(location.search).has('embed')){
+  document.querySelector('header').style.display='none';
+  document.querySelector('.page').style.paddingTop='16px';
+  document.querySelector('.hero').style.display='none';
+}
 </script>
 
 </body>
