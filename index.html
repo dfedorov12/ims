@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate"/>
+<title>DIHAG · ISMS Dokumente</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#0a1f3c; --navy2:#16345a; --navy3:#1e4a7a;
+  --red:#c0392b; --red2:#a93226;
+  --blue:#2563eb; --blue-light:#eff6ff; --blue-border:#bfdbfe;
+  --green:#16a34a; --green-light:#f0fdf4; --green-border:#bbf7d0;
+  --purple:#7c3aed; --purple-light:#f5f3ff; --purple-border:#ddd6fe;
+  --orange:#ea580c; --orange-light:#fff7ed; --orange-border:#fed7aa;
+  --teal:#0d9488; --teal-light:#f0fdfa; --teal-border:#99f6e4;
+  --yellow:#d97706; --yellow-light:#fffbeb; --yellow-border:#fde68a;
+  --pink:#db2777; --pink-light:#fdf2f8; --pink-border:#fbcfe8;
+  --slate:#475569; --slate-light:#f8fafc; --slate-border:#e2e8f0;
+  --surface:#fff; --bg:#f1f5f9; --bg2:#e8edf4;
+  --border:rgba(10,31,60,.09); --border2:rgba(10,31,60,.16);
+  --text:#1a2942; --text-dim:#5a6a7e; --text-muted:#94a3b8;
+  --r:12px; --r-lg:16px;
+  --shadow:0 4px 20px rgba(10,31,60,.10); --shadow-sm:0 1px 6px rgba(10,31,60,.06);
+}
+html,body{min-height:100%;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);}
+
+/* HEADER */
+header{
+  height:52px;background:var(--navy);display:flex;align-items:center;
+  padding:0 20px;gap:14px;position:sticky;top:0;z-index:100;
+  box-shadow:0 2px 12px rgba(10,31,60,.25);
+}
+.hdr-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.hdr-brand img{height:30px;filter:brightness(10) saturate(0);}
+.hdr-tag{font-size:11px;font-weight:700;background:rgba(255,255,255,.12);
+  color:rgba(255,255,255,.75);padding:3px 10px;border-radius:5px;letter-spacing:.05em;white-space:nowrap;}
+.hdr-divider{width:1px;height:26px;background:rgba(255,255,255,.12);}
+.hdr-title{color:#fff;font-size:14px;font-weight:600;opacity:.9;}
+.hdr-sp-link{margin-left:auto;display:flex;align-items:center;gap:8px;
+  color:rgba(255,255,255,.7);font-size:12px;text-decoration:none;
+  padding:6px 14px;border-radius:7px;border:1px solid rgba(255,255,255,.15);
+  transition:all .15s;}
+.hdr-sp-link:hover{background:rgba(255,255,255,.1);color:#fff;}
+.hdr-sp-link svg{width:15px;height:15px;fill:currentColor;}
+
+/* PAGE */
+.page{max-width:1400px;margin:0 auto;padding:32px 24px 60px;}
+
+/* HERO */
+.hero{margin-bottom:36px;}
+.hero h1{font-size:26px;font-weight:800;color:var(--navy);letter-spacing:-.02em;margin-bottom:6px;}
+.hero p{color:var(--text-dim);font-size:14px;line-height:1.6;max-width:600px;}
+.hero-note{display:inline-flex;align-items:center;gap:6px;margin-top:12px;
+  background:#fef3c7;color:#92400e;border:1px solid #fde68a;
+  border-radius:8px;padding:7px 14px;font-size:12px;font-weight:500;}
+
+/* SECTION */
+.section{margin-bottom:40px;}
+.section-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--text-muted);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border2);}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;}
+.grid-lg{grid-template-columns:repeat(auto-fill,minmax(420px,1fr));}
+
+/* CARD */
+.card{background:var(--surface);border-radius:var(--r-lg);
+  box-shadow:var(--shadow-sm);border:1px solid var(--border);
+  overflow:hidden;transition:box-shadow .2s,transform .15s;display:flex;flex-direction:column;}
+.card:hover{box-shadow:var(--shadow);transform:translateY(-2px);}
+.card-head{padding:18px 20px 16px;display:flex;align-items:flex-start;gap:14px;}
+.card-icon{width:46px;height:46px;border-radius:11px;display:flex;align-items:center;
+  justify-content:center;font-size:22px;flex-shrink:0;}
+.card-meta{flex:1;min-width:0;}
+.card-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:3px;line-height:1.3;}
+.card-sub{font-size:12px;color:var(--text-dim);line-height:1.4;}
+.card-body{padding:0 20px 20px;flex:1;}
+.card-docs{display:flex;flex-direction:column;gap:4px;}
+.doc-link{display:flex;align-items:center;gap:9px;padding:8px 10px;
+  border-radius:8px;text-decoration:none;color:var(--text);font-size:13px;
+  transition:background .12s;border:1px solid transparent;}
+.doc-link:hover{background:var(--bg);border-color:var(--border);}
+.doc-link-icon{font-size:15px;flex-shrink:0;width:20px;text-align:center;}
+.doc-link-label{flex:1;font-weight:500;line-height:1.3;}
+.doc-link-badge{font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600;white-space:nowrap;}
+.doc-link-arrow{color:var(--text-muted);font-size:11px;opacity:0;}
+.doc-link:hover .doc-link-arrow{opacity:1;}
+.card-divider{height:1px;background:var(--border);margin:8px 0;}
+.badge-pflicht{background:#fee2e2;color:#b91c1c;}
+.badge-info{background:#e0f2fe;color:#0369a1;}
+.badge-neu{background:#dcfce7;color:#15803d;}
+
+/* color themes */
+.theme-blue .card-icon{background:var(--blue-light);color:var(--blue);}
+.theme-blue .card-head{border-bottom:3px solid var(--blue);}
+.theme-green .card-icon{background:var(--green-light);color:var(--green);}
+.theme-green .card-head{border-bottom:3px solid var(--green);}
+.theme-purple .card-icon{background:var(--purple-light);color:var(--purple);}
+.theme-purple .card-head{border-bottom:3px solid var(--purple);}
+.theme-orange .card-icon{background:var(--orange-light);color:var(--orange);}
+.theme-orange .card-head{border-bottom:3px solid var(--orange);}
+.theme-teal .card-icon{background:var(--teal-light);color:var(--teal);}
+.theme-teal .card-head{border-bottom:3px solid var(--teal);}
+.theme-yellow .card-icon{background:var(--yellow-light);color:var(--yellow);}
+.theme-yellow .card-head{border-bottom:3px solid var(--yellow);}
+.theme-pink .card-icon{background:var(--pink-light);color:var(--pink);}
+.theme-pink .card-head{border-bottom:3px solid var(--pink);}
+.theme-slate .card-icon{background:var(--slate-light);color:var(--slate);}
+.theme-slate .card-head{border-bottom:3px solid var(--slate);}
+.theme-red .card-icon{background:#fff1f2;color:var(--red);}
+.theme-red .card-head{border-bottom:3px solid var(--red);}
+
+/* STATS BAR */
+.stats{display:flex;gap:16px;margin-bottom:32px;flex-wrap:wrap;}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+  padding:16px 22px;display:flex;align-items:center;gap:14px;flex:1;min-width:160px;}
+.stat-icon{font-size:26px;}
+.stat-val{font-size:22px;font-weight:800;color:var(--navy);line-height:1;}
+.stat-lbl{font-size:11px;color:var(--text-dim);margin-top:2px;font-weight:500;}
+
+@media(max-width:640px){
+  .page{padding:20px 16px 40px;}
+  .hero h1{font-size:20px;}
+  .grid{grid-template-columns:1fr;}
+  .stats{gap:10px;}
+  .stat{padding:12px 16px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="hdr-brand" href="index.html">
+    <img src="data:image/png;base64,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" alt="DIHAG"/>
+  </a>
+  <div class="hdr-tag">ISMS</div>
+  <div class="hdr-divider"></div>
+  <span class="hdr-title">Informationssicherheits-Managementsystem</span>
+  <a class="hdr-sp-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
+    SharePoint-Bibliothek
+  </a>
+</header>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>ISMS Dokumente</h1>
+    <p>Zentrale Übersicht aller Dokumente des Informationssicherheits-Managementsystems nach ISO/IEC 27001. Klick auf ein Dokument öffnet es direkt in SharePoint.</p>
+    <div class="hero-note">
+      ⚠ Die individuellen Dokumentlinks werden eingerichtet, sobald SharePoint vollständig konfiguriert ist.
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-icon">📄</div>
+      <div>
+        <div class="stat-val">28</div>
+        <div class="stat-lbl">Dokumente gesamt</div>
+      </div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon">📋</div>
+      <div>
+        <div class="stat-val">9</div>
+        <div class="stat-lbl">Kategorien</div>
+      </div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon">✅</div>
+      <div>
+        <div class="stat-val">ISO 27001</div>
+        <div class="stat-lbl">Standard</div>
+      </div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon">🔒</div>
+      <div>
+        <div class="stat-val">DIHAG</div>
+        <div class="stat-lbl">Gültigkeitsbereich</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: STEUERUNG -->
+  <div class="section">
+    <div class="section-label">Steuerung & Leitlinie</div>
+    <div class="grid">
+
+      <div class="card theme-blue">
+        <div class="card-head">
+          <div class="card-icon">🏛️</div>
+          <div class="card-meta">
+            <div class="card-title">Leitlinien & Grundsatzdokumente</div>
+            <div class="card-sub">Übergeordnete Vorgaben der Geschäftsführung zur Informationssicherheit</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-docs">
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">📘</span>
+              <span class="doc-link-label">Informationssicherheits-Leitlinie</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">📘</span>
+              <span class="doc-link-label">IT-Sicherheitskonzept</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">📗</span>
+              <span class="doc-link-label">Erklärung zur Anwendbarkeit (SoA)</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card theme-purple">
+        <div class="card-head">
+          <div class="card-icon">⚖️</div>
+          <div class="card-meta">
+            <div class="card-title">Risikomanagement</div>
+            <div class="card-sub">Risikobeurteilung, -behandlung und kontinuierliche Überwachung</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-docs">
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">📊</span>
+              <span class="doc-link-label">Risikobewertungsverfahren</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">📊</span>
+              <span class="doc-link-label">Risikoregister</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">📋</span>
+              <span class="doc-link-label">Risikobehandlungsplan</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 2: RICHTLINIEN -->
+  <div class="section">
+    <div class="section-label">Richtlinien & Regelwerke</div>
+    <div class="grid">
+
+      <div class="card theme-orange">
+        <div class="card-head">
+          <div class="card-icon">🖥️</div>
+          <div class="card-meta">
+            <div class="card-title">IT-Nutzung & Zugangskontrolle</div>
+            <div class="card-sub">Regeln zur sicheren Nutzung von IT-Systemen und Zugriffssteuerung</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-docs">
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">📄</span>
+              <span class="doc-link-label">IT-Nutzungsrichtlinie</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">🔑</span>
+              <span class="doc-link-label">Passwort- & Authentifizierungsrichtlinie</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">🛡️</span>
+              <span class="doc-link-label">Zugriffssteuerungskonzept</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">🧹</span>
+              <span class="doc-link-label">Clean-Desk-Richtlinie</span>
+              <span class="doc-link-badge badge-info">Info</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card theme-teal">
+        <div class="card-head">
+          <div class="card-icon">🔐</div>
+          <div class="card-meta">
+            <div class="card-title">Kryptographie & Datenschutz</div>
+            <div class="card-sub">Verschlüsselung, Schlüsselverwaltung und DSGVO-Dokumentation</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-docs">
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">🔒</span>
+              <span class="doc-link-label">Kryptographierichtlinie</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">📋</span>
+              <span class="doc-link-label">Datenschutzrichtlinie (DSGVO)</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">📝</span>
+              <span class="doc-link-label">Verzeichnis der Verarbeitungstätigkeiten (VVT)</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card theme-slate">
+        <div class="card-head">
+          <div class="card-icon">🏢</div>
+          <div class="card-meta">
+            <div class="card-title">Physische & Umgebungssicherheit</div>
+            <div class="card-sub">Zutrittskontrolle, Serverraumsicherheit, Arbeitsplatzschutz</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-docs">
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">🚪</span>
+              <span class="doc-link-label">Zutrittssteuerungskonzept</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">🖥️</span>
+              <span class="doc-link-label">Serverraum-Sicherheitskonzept</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 3: BETRIEB -->
+  <div class="section">
+    <div class="section-label">Betrieb & Technik</div>
+    <div class="grid">
+
+      <div class="card theme-blue">
+        <div class="card-head">
+          <div class="card-icon">🌐</div>
+          <div class="card-meta">
+            <div class="card-title">Netzwerk & Infrastruktur</div>
+            <div class="card-sub">Netzwerksegmentierung, Firewall-Konzept, Geräteverwaltung</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-docs">
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">🗺️</span>
+              <span class="doc-link-label">Netzwerkdokumentation & Topologie</span>
+              <span class="doc-link-badge badge-info">Info</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">💻</span>
+              <span class="doc-link-label">Asset-Inventar (Hardware & Software)</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">🔄</span>
+              <span class="doc-link-label">Patch-Management-Prozess</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">🐛</span>
+              <span class="doc-link-label">Schwachstellenmanagement</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card theme-green">
+        <div class="card-head">
+          <div class="card-icon">💾</div>
+          <div class="card-meta">
+            <div class="card-title">Backup & Datensicherung</div>
+            <div class="card-sub">Backup-Strategie, Wiederherstellungstests, Aufbewahrungsfristen</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-docs">
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">💿</span>
+              <span class="doc-link-label">Backup-Konzept</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">✅</span>
+              <span class="doc-link-label">Backup-Testprotokoll</span>
+              <span class="doc-link-badge badge-info">Info</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 4: INCIDENT & BCM -->
+  <div class="section">
+    <div class="section-label">Incident Management & Business Continuity</div>
+    <div class="grid">
+
+      <div class="card theme-red">
+        <div class="card-head">
+          <div class="card-icon">🚨</div>
+          <div class="card-meta">
+            <div class="card-title">Incident Response</div>
+            <div class="card-sub">Meldewege, Eskalation und Nachbereitung von Sicherheitsvorfällen</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-docs">
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">📟</span>
+              <span class="doc-link-label">Incident-Response-Plan</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">📋</span>
+              <span class="doc-link-label">Vorfallsregister</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">📑</span>
+              <span class="doc-link-label">Meldepflicht-Checkliste (DSGVO Art. 33)</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card theme-yellow">
+        <div class="card-head">
+          <div class="card-icon">🔄</div>
+          <div class="card-meta">
+            <div class="card-title">Business Continuity (BCM)</div>
+            <div class="card-sub">Notfallpläne, Wiederanlauf und Krisenmanagement</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-docs">
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">🚑</span>
+              <span class="doc-link-label">Business-Continuity-Plan (BCP)</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">📖</span>
+              <span class="doc-link-label">Notfallhandbuch</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">⏱️</span>
+              <span class="doc-link-label">Wiederanlaufpläne kritischer Systeme</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 5: PERSONAL & COMPLIANCE -->
+  <div class="section">
+    <div class="section-label">Personal, Lieferanten & Compliance</div>
+    <div class="grid">
+
+      <div class="card theme-pink">
+        <div class="card-head">
+          <div class="card-icon">👥</div>
+          <div class="card-meta">
+            <div class="card-title">Personal & Awareness</div>
+            <div class="card-sub">Schulungen, Verpflichtungserklärungen und Awareness-Materialien</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-docs">
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">🎓</span>
+              <span class="doc-link-label">Schulungsplan Informationssicherheit</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">✍️</span>
+              <span class="doc-link-label">Verpflichtungserklärung Mitarbeitende</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">📢</span>
+              <span class="doc-link-label">Awareness-Materialien</span>
+              <span class="doc-link-badge badge-info">Info</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card theme-teal">
+        <div class="card-head">
+          <div class="card-icon">🤝</div>
+          <div class="card-meta">
+            <div class="card-title">Lieferanten & Dritte</div>
+            <div class="card-sub">Lieferantenbewertung, Verträge und Auftragsverarbeitungsverträge</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-docs">
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">📊</span>
+              <span class="doc-link-label">Lieferantenbewertungsverfahren</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">📝</span>
+              <span class="doc-link-label">AVV-Vorlage (Auftragsverarbeitung)</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">📋</span>
+              <span class="doc-link-label">Lieferantenregister</span>
+              <span class="doc-link-badge badge-info">Info</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card theme-purple">
+        <div class="card-head">
+          <div class="card-icon">🔍</div>
+          <div class="card-meta">
+            <div class="card-title">Audit & Verbesserung</div>
+            <div class="card-sub">Interne Audits, Managementbewertung und Korrekturmaßnahmen</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-docs">
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">🔎</span>
+              <span class="doc-link-label">Interner Auditplan</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">📑</span>
+              <span class="doc-link-label">Auditberichte</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">🎯</span>
+              <span class="doc-link-label">Managementbewertung (Management Review)</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+            <a class="doc-link" href="https://dihag.sharepoint.com/sites/ISMS/ISMS%20Dokumente/Forms/AllItems.aspx" target="_blank" rel="noopener">
+              <span class="doc-link-icon">🔧</span>
+              <span class="doc-link-label">Korrekturmaßnahmen (CAPA)</span>
+              <span class="doc-link-badge badge-pflicht">Pflicht</span>
+              <span class="doc-link-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
