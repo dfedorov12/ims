@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>DIHAG · Prozesslandschaft</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#0a1f3c;
+  --blue:#1a56a0; --blue-light:#d6e4f7;
+  --orange:#d95f02; --orange-light:#fde8d0;
+  --green:#4a7c59; --green-light:#d4e8d0;
+  --yellow:#c8960c; --yellow-light:#fef3c0;
+  --bg:#f1f5f9; --surface:#fff;
+  --border:rgba(10,31,60,.1);
+  --text:#1a2942; --text-dim:#5a6a7e;
+}
+html,body{min-height:100%;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);}
+
+/* HEADER */
+header{
+  height:52px;background:var(--navy);display:flex;align-items:center;
+  padding:0 20px;gap:14px;position:sticky;top:0;z-index:100;
+  box-shadow:0 2px 12px rgba(10,31,60,.25);
+}
+.hdr-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.hdr-brand img{height:30px;filter:brightness(10) saturate(0);}
+.hdr-tag{font-size:11px;font-weight:700;background:rgba(255,255,255,.12);
+  color:rgba(255,255,255,.75);padding:3px 10px;border-radius:5px;letter-spacing:.05em;}
+.hdr-divider{width:1px;height:26px;background:rgba(255,255,255,.12);}
+.hdr-title{color:#fff;font-size:14px;font-weight:600;opacity:.9;}
+.hdr-back{margin-left:auto;color:rgba(255,255,255,.7);font-size:12px;text-decoration:none;
+  padding:6px 14px;border-radius:7px;border:1px solid rgba(255,255,255,.15);transition:all .15s;}
+.hdr-back:hover{background:rgba(255,255,255,.1);color:#fff;}
+
+/* PAGE */
+.page{max-width:1300px;margin:0 auto;padding:32px 24px 60px;}
+.hero{margin-bottom:36px;}
+.hero h1{font-size:24px;font-weight:800;color:var(--navy);letter-spacing:-.02em;margin-bottom:4px;}
+.hero p{color:var(--text-dim);font-size:13px;}
+
+/* LANDSCAPE */
+.landscape{display:flex;flex-direction:column;gap:20px;}
+
+/* ── SECTION WRAPPER ── */
+.section-row{display:flex;flex-direction:column;gap:10px;}
+
+/* BAND: full-width blue bar */
+.band{
+  background:var(--blue);color:#fff;
+  border-radius:8px;padding:12px 24px;
+  font-size:15px;font-weight:700;letter-spacing:.02em;text-align:center;
+}
+.band.bottom{background:var(--blue);}
+
+/* ── FÜHRUNG ── */
+.fuehrung-grid{
+  display:flex;gap:12px;justify-content:center;padding:0 60px;flex-wrap:wrap;
+}
+.penta{
+  position:relative;display:flex;align-items:center;justify-content:center;
+  width:180px;height:90px;flex-shrink:0;
+  background:var(--green-light);
+  clip-path:polygon(0 0, 82% 0, 100% 50%, 82% 100%, 0 100%);
+  cursor:pointer;transition:filter .2s,transform .15s;
+  text-decoration:none;
+}
+.penta:hover{filter:brightness(.92);transform:translateX(4px);}
+.penta-label{
+  font-size:13px;font-weight:700;color:var(--green);
+  text-align:center;line-height:1.3;padding:0 14px 0 10px;
+  pointer-events:none;
+}
+.penta-sub{font-size:10px;font-weight:400;color:var(--green);margin-top:2px;opacity:.8;}
+
+/* ── KERN ── */
+.kern-wrapper{display:flex;gap:0;align-items:stretch;}
+.kern-label-box{
+  background:var(--blue);color:#fff;border-radius:8px 0 0 8px;
+  display:flex;align-items:center;justify-content:center;
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  font-size:13px;font-weight:700;letter-spacing:.08em;
+  padding:16px 10px;min-width:44px;flex-shrink:0;
+}
+.kern-arrows{flex:1;display:flex;flex-direction:column;gap:10px;padding:12px 0 12px 12px;}
+.kern-output{
+  background:var(--blue);color:#fff;border-radius:0 8px 8px 0;
+  display:flex;flex-direction:column;justify-content:space-around;
+  padding:12px 18px;min-width:110px;flex-shrink:0;gap:10px;
+}
+.output-item{font-size:13px;font-weight:700;text-align:center;line-height:1.3;}
+
+/* arrow shape */
+.arrow{
+  position:relative;display:flex;align-items:center;
+  height:68px;flex:1;
+  background:var(--orange);
+  clip-path:polygon(0 15%, 94% 15%, 94% 0%, 100% 50%, 94% 100%, 94% 85%, 0 85%);
+  cursor:pointer;transition:filter .2s,transform .15s;
+  text-decoration:none;
+}
+.arrow:hover{filter:brightness(.9);transform:scaleX(1.01);}
+.arrow-content{
+  padding:0 60px 0 24px;display:flex;align-items:baseline;gap:10px;
+}
+.arrow-title{font-size:16px;font-weight:700;color:#fff;}
+.arrow-sub{font-size:11px;color:rgba(255,255,255,.8);font-weight:400;}
+
+/* ── SUPPORT ── */
+.support-pentas{
+  display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap;
+}
+.penta-down{
+  display:flex;align-items:flex-start;justify-content:center;
+  flex:1;min-width:100px;max-width:150px;height:90px;
+  background:var(--yellow-light);
+  clip-path:polygon(0 0, 100% 0, 100% 65%, 50% 100%, 0 65%);
+  cursor:pointer;transition:filter .2s,transform .15s;
+  text-decoration:none;padding-top:12px;
+}
+.penta-down:hover{filter:brightness(.92);transform:translateY(-3px);}
+.penta-down-label{
+  font-size:12px;font-weight:700;color:var(--yellow);
+  text-align:center;line-height:1.3;padding:0 8px;
+}
+
+/* TOOLTIP / hover info */
+.tooltip{
+  position:fixed;bottom:28px;left:50%;transform:translateX(-50%);
+  background:var(--navy);color:#fff;font-size:12px;padding:8px 16px;
+  border-radius:8px;pointer-events:none;opacity:0;transition:opacity .2s;
+  white-space:nowrap;z-index:200;
+}
+.tooltip.show{opacity:1;}
+
+/* note */
+.note{
+  display:inline-flex;align-items:center;gap:6px;
+  background:#fef9c3;color:#854d0e;border:1px solid #fde047;
+  border-radius:7px;padding:6px 14px;font-size:12px;font-weight:500;
+  margin-bottom:8px;
+}
+
+@media(max-width:900px){
+  .penta{width:140px;height:76px;}
+  .arrow-title{font-size:14px;}
+  .kern-output{min-width:85px;}
+  .output-item{font-size:11px;}
+}
+@media(max-width:640px){
+  .fuehrung-grid{padding:0;gap:8px;}
+  .penta{width:100%;clip-path:none;height:auto;padding:10px;border-radius:8px;}
+  .arrow{clip-path:none;border-radius:8px;height:auto;padding:12px;}
+  .penta-down{clip-path:none;border-radius:8px;height:auto;padding:10px;align-items:center;}
+  .kern-wrapper{flex-direction:column;}
+  .kern-label-box{writing-mode:horizontal-tb;transform:none;border-radius:8px 8px 0 0;min-width:unset;padding:10px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="hdr-brand" href="index.html">
+    <img src="data:image/png;base64,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" alt="DIHAG"/>
+  </a>
+  <div class="hdr-tag">ISMS</div>
+  <div class="hdr-divider"></div>
+  <span class="hdr-title">Prozesslandschaft</span>
+  <a class="hdr-back" href="index.html">← ISMS Dokumente</a>
+</header>
+
+<div class="page">
+
+  <div class="hero">
+    <h1>DIHAG Prozesslandschaft</h1>
+    <p>Übersicht aller Führungs-, Kern- und Unterstützungsprozesse. Klick auf einen Prozess öffnet die jeweilige SharePoint-Seite.</p>
+    <div class="note" style="margin-top:12px;">
+      ⚠ Keine Entwicklung &nbsp;·&nbsp; Kein Marketing
+    </div>
+  </div>
+
+  <div class="landscape">
+
+    <!-- ═══ FÜHRUNGSPROZESSE ═══ -->
+    <div class="section-row">
+      <div class="band">Führungsprozesse</div>
+      <div class="fuehrung-grid">
+
+        <a class="penta" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+           onmouseenter="tip('Strategie')" onmouseleave="tip('')">
+          <div class="penta-label">Strategie</div>
+        </a>
+
+        <a class="penta" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+           onmouseenter="tip('Unternehmen steuern')" onmouseleave="tip('')">
+          <div class="penta-label">Unternehmen<br>steuern</div>
+        </a>
+
+        <a class="penta" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+           onmouseenter="tip('Prozessmanagement / Changemanagement')" onmouseleave="tip('')">
+          <div class="penta-label">Prozessmanagement<br>Changemanagement</div>
+        </a>
+
+        <a class="penta" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+           onmouseenter="tip('Mitarbeiterentwicklung')" onmouseleave="tip('')">
+          <div class="penta-label">Mitarbeiter-<br>entwicklung</div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- ═══ KERNPROZESSE ═══ -->
+    <div class="kern-wrapper">
+      <div class="kern-label-box">Kernprozesse</div>
+
+      <div class="kern-arrows">
+
+        <a class="arrow" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+           onmouseenter="tip('Vertrieb – Gießdienstleistungen vermarkten / CRM')" onmouseleave="tip('')">
+          <div class="arrow-content">
+            <span class="arrow-title">Vertrieb</span>
+            <span class="arrow-sub">Gießdienstleistungen vermarkten &nbsp;·&nbsp; CRM</span>
+          </div>
+        </a>
+
+        <a class="arrow" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+           onmouseenter="tip('Produktion – Produkte herstellen')" onmouseleave="tip('')">
+          <div class="arrow-content">
+            <span class="arrow-title">Produktion</span>
+            <span class="arrow-sub">Produkte herstellen</span>
+          </div>
+        </a>
+
+        <a class="arrow" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+           onmouseenter="tip('Aufträge abwickeln – Versand / Faktura')" onmouseleave="tip('')">
+          <div class="arrow-content">
+            <span class="arrow-title">Aufträge abwickeln</span>
+            <span class="arrow-sub">Versand &nbsp;/&nbsp; Faktura</span>
+          </div>
+        </a>
+
+      </div>
+
+      <div class="kern-output">
+        <div class="output-item">Aufträge</div>
+        <div class="output-item">Produkte</div>
+        <div class="output-item">Einnahmen</div>
+      </div>
+    </div>
+
+    <!-- ═══ UNTERSTÜTZUNGSPROZESSE ═══ -->
+    <div class="section-row">
+      <div class="support-pentas">
+
+        <a class="penta-down" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+           onmouseenter="tip('Buchhaltung')" onmouseleave="tip('')">
+          <div class="penta-down-label">Buch-<br>haltung</div>
+        </a>
+
+        <a class="penta-down" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+           onmouseenter="tip('Controlling')" onmouseleave="tip('')">
+          <div class="penta-down-label">Controlling</div>
+        </a>
+
+        <a class="penta-down" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+           onmouseenter="tip('Personal')" onmouseleave="tip('')">
+          <div class="penta-down-label">Personal</div>
+        </a>
+
+        <a class="penta-down" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+           onmouseenter="tip('Beschaffung')" onmouseleave="tip('')">
+          <div class="penta-down-label">Beschaffung</div>
+        </a>
+
+        <a class="penta-down" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+           onmouseenter="tip('IT')" onmouseleave="tip('')">
+          <div class="penta-down-label">IT</div>
+        </a>
+
+        <a class="penta-down" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+           onmouseenter="tip('Instandhaltung')" onmouseleave="tip('')">
+          <div class="penta-down-label">Instand-<br>haltung</div>
+        </a>
+
+        <a class="penta-down" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+           onmouseenter="tip('Arbeitsvorbereitung')" onmouseleave="tip('')">
+          <div class="penta-down-label">Arbeits-<br>vorbereitung</div>
+        </a>
+
+        <a class="penta-down" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+           onmouseenter="tip('Qualitätsmanagement')" onmouseleave="tip('')">
+          <div class="penta-down-label">Qualitäts-<br>management</div>
+        </a>
+
+      </div>
+      <div class="band bottom">Unterstützungsprozess</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+function tip(text){
+  const el = document.getElementById('tooltip');
+  if(text){el.textContent = '→ ' + text; el.classList.add('show');}
+  else{el.classList.remove('show');}
+}
+</script>
+
+</body>
+</html>
