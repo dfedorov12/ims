@@ -10,12 +10,11 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
   --navy:#0a1f3c;
-  --blue:#1a56a0; --blue-light:#d6e4f7;
-  --orange:#d95f02; --orange-light:#fde8d0;
-  --green:#4a7c59; --green-light:#d4e8d0;
-  --yellow:#c8960c; --yellow-light:#fef3c0;
+  --blue:#1a56a0;
+  --orange:#d95f02;
+  --green:#3d6b4f; --green-bg:#d4e8d8;
+  --yellow:#a67c00; --yellow-bg:#fef3c0;
   --bg:#f1f5f9; --surface:#fff;
-  --border:rgba(10,31,60,.1);
   --text:#1a2942; --text-dim:#5a6a7e;
 }
 html,body{min-height:100%;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);}
@@ -37,126 +36,123 @@ header{
 .hdr-back:hover{background:rgba(255,255,255,.1);color:#fff;}
 
 /* PAGE */
-.page{max-width:1300px;margin:0 auto;padding:32px 24px 60px;}
-.hero{margin-bottom:36px;}
+.page{max-width:1340px;margin:0 auto;padding:32px 24px 60px;}
+.hero{margin-bottom:28px;}
 .hero h1{font-size:24px;font-weight:800;color:var(--navy);letter-spacing:-.02em;margin-bottom:4px;}
 .hero p{color:var(--text-dim);font-size:13px;}
+.note{display:inline-flex;align-items:center;gap:8px;margin-top:10px;
+  background:#fef9c3;color:#854d0e;border:1px solid #fde047;
+  border-radius:7px;padding:6px 14px;font-size:12px;font-weight:600;}
 
 /* LANDSCAPE */
-.landscape{display:flex;flex-direction:column;gap:20px;}
+.landscape{display:flex;flex-direction:column;gap:16px;}
 
-/* ── SECTION WRAPPER ── */
-.section-row{display:flex;flex-direction:column;gap:10px;}
-
-/* BAND: full-width blue bar */
+/* BAND */
 .band{
-  background:var(--blue);color:#fff;
-  border-radius:8px;padding:12px 24px;
-  font-size:15px;font-weight:700;letter-spacing:.02em;text-align:center;
+  background:var(--blue);color:#fff;border-radius:8px;
+  padding:13px 24px;font-size:16px;font-weight:700;
+  letter-spacing:.02em;text-align:center;
 }
-.band.bottom{background:var(--blue);}
 
-/* ── FÜHRUNG ── */
+/* ── FÜHRUNGSPROZESSE ── */
+.fuehrung-row{display:flex;flex-direction:column;gap:10px;}
 .fuehrung-grid{
-  display:flex;gap:12px;justify-content:center;padding:0 60px;flex-wrap:wrap;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
 }
-.penta{
-  position:relative;display:flex;align-items:center;justify-content:center;
-  width:180px;height:90px;flex-shrink:0;
-  background:var(--green-light);
-  clip-path:polygon(0 0, 82% 0, 100% 50%, 82% 100%, 0 100%);
-  cursor:pointer;transition:filter .2s,transform .15s;
-  text-decoration:none;
-}
-.penta:hover{filter:brightness(.92);transform:translateX(4px);}
-.penta-label{
-  font-size:13px;font-weight:700;color:var(--green);
-  text-align:center;line-height:1.3;padding:0 14px 0 10px;
-  pointer-events:none;
-}
-.penta-sub{font-size:10px;font-weight:400;color:var(--green);margin-top:2px;opacity:.8;}
 
-/* ── KERN ── */
+.fp-shape{
+  display:flex;align-items:flex-start;justify-content:center;
+  height:100px;padding-top:14px;
+  background:var(--green-bg);
+  clip-path:polygon(0 0, 100% 0, 100% 68%, 50% 100%, 0 68%);
+  text-decoration:none;cursor:pointer;
+  transition:filter .18s,transform .15s;
+}
+.fp-shape:hover{filter:brightness(.9);transform:translateY(-3px);}
+.fp-label{
+  font-size:13px;font-weight:700;color:var(--green);
+  text-align:center;line-height:1.35;padding:0 10px;
+}
+
+/* ── KERNPROZESSE ── */
 .kern-wrapper{display:flex;gap:0;align-items:stretch;}
 .kern-label-box{
-  background:var(--blue);color:#fff;border-radius:8px 0 0 8px;
+  background:var(--blue);color:#fff;
+  border-radius:8px 0 0 8px;
   display:flex;align-items:center;justify-content:center;
   writing-mode:vertical-rl;transform:rotate(180deg);
   font-size:13px;font-weight:700;letter-spacing:.08em;
-  padding:16px 10px;min-width:44px;flex-shrink:0;
+  padding:16px 12px;min-width:46px;flex-shrink:0;
 }
-.kern-arrows{flex:1;display:flex;flex-direction:column;gap:10px;padding:12px 0 12px 12px;}
+.kern-arrows{
+  flex:1;display:flex;flex-direction:column;gap:10px;
+  padding:12px 0 12px 12px;
+}
 .kern-output{
-  background:var(--blue);color:#fff;border-radius:0 8px 8px 0;
+  background:var(--blue);color:#fff;
+  border-radius:0 8px 8px 0;
   display:flex;flex-direction:column;justify-content:space-around;
-  padding:12px 18px;min-width:110px;flex-shrink:0;gap:10px;
+  padding:12px 20px;min-width:115px;flex-shrink:0;gap:10px;
 }
-.output-item{font-size:13px;font-weight:700;text-align:center;line-height:1.3;}
+.output-item{font-size:14px;font-weight:700;text-align:center;line-height:1.3;}
 
-/* arrow shape */
 .arrow{
-  position:relative;display:flex;align-items:center;
-  height:68px;flex:1;
+  flex:1;display:flex;align-items:center;height:70px;
   background:var(--orange);
-  clip-path:polygon(0 15%, 94% 15%, 94% 0%, 100% 50%, 94% 100%, 94% 85%, 0 85%);
-  cursor:pointer;transition:filter .2s,transform .15s;
-  text-decoration:none;
+  clip-path:polygon(0 12%, 93% 12%, 93% 0%, 100% 50%, 93% 100%, 93% 88%, 0 88%);
+  text-decoration:none;cursor:pointer;
+  transition:filter .18s,transform .15s;
 }
-.arrow:hover{filter:brightness(.9);transform:scaleX(1.01);}
-.arrow-content{
-  padding:0 60px 0 24px;display:flex;align-items:baseline;gap:10px;
-}
-.arrow-title{font-size:16px;font-weight:700;color:#fff;}
-.arrow-sub{font-size:11px;color:rgba(255,255,255,.8);font-weight:400;}
+.arrow:hover{filter:brightness(.88);transform:scaleX(1.012);}
+.arrow-content{padding:0 64px 0 26px;display:flex;align-items:baseline;gap:12px;}
+.arrow-title{font-size:17px;font-weight:700;color:#fff;}
+.arrow-sub{font-size:11px;color:rgba(255,255,255,.82);font-weight:400;}
 
-/* ── SUPPORT ── */
-.support-pentas{
-  display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap;
+/* ── UNTERSTÜTZUNGSPROZESSE ── */
+.support-row{display:flex;flex-direction:column;gap:10px;}
+.support-grid{
+  display:grid;
+  grid-template-columns:repeat(9,1fr);
+  gap:8px;
 }
-.penta-down{
+
+.sp-shape{
   display:flex;align-items:flex-start;justify-content:center;
-  flex:1;min-width:100px;max-width:150px;height:90px;
-  background:var(--yellow-light);
+  height:90px;padding-top:12px;
+  background:var(--yellow-bg);
   clip-path:polygon(0 0, 100% 0, 100% 65%, 50% 100%, 0 65%);
-  cursor:pointer;transition:filter .2s,transform .15s;
-  text-decoration:none;padding-top:12px;
+  text-decoration:none;cursor:pointer;
+  transition:filter .18s,transform .15s;
 }
-.penta-down:hover{filter:brightness(.92);transform:translateY(-3px);}
-.penta-down-label{
-  font-size:12px;font-weight:700;color:var(--yellow);
-  text-align:center;line-height:1.3;padding:0 8px;
+.sp-shape:hover{filter:brightness(.9);transform:translateY(-3px);}
+.sp-label{
+  font-size:11.5px;font-weight:700;color:var(--yellow);
+  text-align:center;line-height:1.3;padding:0 6px;
 }
 
-/* TOOLTIP / hover info */
+/* TOOLTIP */
 .tooltip{
-  position:fixed;bottom:28px;left:50%;transform:translateX(-50%);
-  background:var(--navy);color:#fff;font-size:12px;padding:8px 16px;
-  border-radius:8px;pointer-events:none;opacity:0;transition:opacity .2s;
-  white-space:nowrap;z-index:200;
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+  background:var(--navy);color:#fff;font-size:12px;font-weight:500;
+  padding:8px 18px;border-radius:8px;
+  pointer-events:none;opacity:0;transition:opacity .15s;
+  white-space:nowrap;z-index:300;
 }
 .tooltip.show{opacity:1;}
 
-/* note */
-.note{
-  display:inline-flex;align-items:center;gap:6px;
-  background:#fef9c3;color:#854d0e;border:1px solid #fde047;
-  border-radius:7px;padding:6px 14px;font-size:12px;font-weight:500;
-  margin-bottom:8px;
+@media(max-width:1100px){
+  .fuehrung-grid{grid-template-columns:repeat(3,1fr);}
+  .support-grid{grid-template-columns:repeat(5,1fr);}
 }
-
-@media(max-width:900px){
-  .penta{width:140px;height:76px;}
-  .arrow-title{font-size:14px;}
-  .kern-output{min-width:85px;}
-  .output-item{font-size:11px;}
-}
-@media(max-width:640px){
-  .fuehrung-grid{padding:0;gap:8px;}
-  .penta{width:100%;clip-path:none;height:auto;padding:10px;border-radius:8px;}
-  .arrow{clip-path:none;border-radius:8px;height:auto;padding:12px;}
-  .penta-down{clip-path:none;border-radius:8px;height:auto;padding:10px;align-items:center;}
+@media(max-width:700px){
+  .fuehrung-grid,.support-grid{grid-template-columns:repeat(2,1fr);}
+  .fp-shape,.sp-shape{clip-path:none;border-radius:10px;height:auto;padding:12px;}
+  .arrow{clip-path:none;border-radius:8px;height:auto;padding:14px 16px;}
   .kern-wrapper{flex-direction:column;}
   .kern-label-box{writing-mode:horizontal-tb;transform:none;border-radius:8px 8px 0 0;min-width:unset;padding:10px;}
+  .kern-output{border-radius:0 0 8px 8px;flex-direction:row;min-width:unset;justify-content:space-evenly;}
 }
 </style>
 </head>
@@ -177,36 +173,39 @@ header{
   <div class="hero">
     <h1>DIHAG Prozesslandschaft</h1>
     <p>Übersicht aller Führungs-, Kern- und Unterstützungsprozesse. Klick auf einen Prozess öffnet die jeweilige SharePoint-Seite.</p>
-    <div class="note" style="margin-top:12px;">
-      ⚠ Keine Entwicklung &nbsp;·&nbsp; Kein Marketing
-    </div>
+    <div class="note">⚠ Keine Entwicklung &nbsp;·&nbsp; Kein Marketing</div>
   </div>
 
   <div class="landscape">
 
     <!-- ═══ FÜHRUNGSPROZESSE ═══ -->
-    <div class="section-row">
+    <div class="fuehrung-row">
       <div class="band">Führungsprozesse</div>
       <div class="fuehrung-grid">
 
-        <a class="penta" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+        <a class="fp-shape" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
            onmouseenter="tip('Strategie')" onmouseleave="tip('')">
-          <div class="penta-label">Strategie</div>
+          <div class="fp-label">Strategie</div>
         </a>
 
-        <a class="penta" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+        <a class="fp-shape" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+           onmouseenter="tip('Programm- und Projektmanagement / Changemanagement')" onmouseleave="tip('')">
+          <div class="fp-label">Programm- und<br>Projektmanagement<br>Changemanagement</div>
+        </a>
+
+        <a class="fp-shape" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
            onmouseenter="tip('Unternehmen steuern')" onmouseleave="tip('')">
-          <div class="penta-label">Unternehmen<br>steuern</div>
+          <div class="fp-label">Unternehmen<br>steuern</div>
         </a>
 
-        <a class="penta" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
-           onmouseenter="tip('Prozessmanagement / Changemanagement')" onmouseleave="tip('')">
-          <div class="penta-label">Prozessmanagement<br>Changemanagement</div>
+        <a class="fp-shape" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+           onmouseenter="tip('Corporate Governance / Prozessmanagement')" onmouseleave="tip('')">
+          <div class="fp-label">Corporate<br>Governance<br>Prozessmanagement</div>
         </a>
 
-        <a class="penta" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+        <a class="fp-shape" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
            onmouseenter="tip('Mitarbeiterentwicklung')" onmouseleave="tip('')">
-          <div class="penta-label">Mitarbeiter-<br>entwicklung</div>
+          <div class="fp-label">Mitarbeiter-<br>entwicklung</div>
         </a>
 
       </div>
@@ -215,7 +214,6 @@ header{
     <!-- ═══ KERNPROZESSE ═══ -->
     <div class="kern-wrapper">
       <div class="kern-label-box">Kernprozesse</div>
-
       <div class="kern-arrows">
 
         <a class="arrow" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
@@ -243,7 +241,6 @@ header{
         </a>
 
       </div>
-
       <div class="kern-output">
         <div class="output-item">Aufträge</div>
         <div class="output-item">Produkte</div>
@@ -252,51 +249,56 @@ header{
     </div>
 
     <!-- ═══ UNTERSTÜTZUNGSPROZESSE ═══ -->
-    <div class="section-row">
-      <div class="support-pentas">
+    <div class="support-row">
+      <div class="support-grid">
 
-        <a class="penta-down" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+        <a class="sp-shape" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+           onmouseenter="tip('Compliance')" onmouseleave="tip('')">
+          <div class="sp-label">Compliance</div>
+        </a>
+
+        <a class="sp-shape" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
            onmouseenter="tip('Buchhaltung')" onmouseleave="tip('')">
-          <div class="penta-down-label">Buch-<br>haltung</div>
+          <div class="sp-label">Buch-<br>haltung</div>
         </a>
 
-        <a class="penta-down" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+        <a class="sp-shape" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
            onmouseenter="tip('Controlling')" onmouseleave="tip('')">
-          <div class="penta-down-label">Controlling</div>
+          <div class="sp-label">Controlling</div>
         </a>
 
-        <a class="penta-down" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+        <a class="sp-shape" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
            onmouseenter="tip('Personal')" onmouseleave="tip('')">
-          <div class="penta-down-label">Personal</div>
+          <div class="sp-label">Personal</div>
         </a>
 
-        <a class="penta-down" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+        <a class="sp-shape" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
            onmouseenter="tip('Beschaffung')" onmouseleave="tip('')">
-          <div class="penta-down-label">Beschaffung</div>
+          <div class="sp-label">Beschaffung</div>
         </a>
 
-        <a class="penta-down" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+        <a class="sp-shape" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
            onmouseenter="tip('IT')" onmouseleave="tip('')">
-          <div class="penta-down-label">IT</div>
+          <div class="sp-label">IT</div>
         </a>
 
-        <a class="penta-down" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+        <a class="sp-shape" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
            onmouseenter="tip('Instandhaltung')" onmouseleave="tip('')">
-          <div class="penta-down-label">Instand-<br>haltung</div>
+          <div class="sp-label">Instand-<br>haltung</div>
         </a>
 
-        <a class="penta-down" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+        <a class="sp-shape" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
            onmouseenter="tip('Arbeitsvorbereitung')" onmouseleave="tip('')">
-          <div class="penta-down-label">Arbeits-<br>vorbereitung</div>
+          <div class="sp-label">Arbeits-<br>vorbereitung</div>
         </a>
 
-        <a class="penta-down" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
+        <a class="sp-shape" href="https://dihag.sharepoint.com/SitePages/Prozesslandschaft.aspx" target="_blank" rel="noopener"
            onmouseenter="tip('Qualitätsmanagement')" onmouseleave="tip('')">
-          <div class="penta-down-label">Qualitäts-<br>management</div>
+          <div class="sp-label">Qualitäts-<br>management</div>
         </a>
 
       </div>
-      <div class="band bottom">Unterstützungsprozess</div>
+      <div class="band">Unterstützungsprozess</div>
     </div>
 
   </div>
